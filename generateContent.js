@@ -109,7 +109,7 @@ function replypdf(reply_token, msg) {
       url: "https://api.line.me/v2/bot/message/push",
       headers: headers,
       body: JSON.stringify({
-        replyToken: "reply_token",
+        to: "reply_token",
         messages: [
           {
             type: "template",
@@ -167,7 +167,7 @@ async function runSample(reply_token, text, userid) {
         amonttotal +
         "\n";
     });
-    replypdf(reply_token, textmassage);
+    replypdf(userid, textmassage);
    // reply(reply_token, textmassage);
   } else {
     // The text query request.

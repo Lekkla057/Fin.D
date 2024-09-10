@@ -97,7 +97,7 @@ function replypdf(reply_token, msg) {
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  let options = { format: 'A4',path:`/${reply_token}` };
+  let options = { format: 'A4',path:`/` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   
@@ -112,7 +112,7 @@ function replypdf(reply_token, msg) {
       url: "https://api.line.me/v2/bot/message/push",
       headers: headers,
       body: JSON.stringify({
-        to: "reply_token",
+        to: reply_token,
         messages: [
           {
             type: "template",

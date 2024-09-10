@@ -98,10 +98,13 @@ function replypdf(reply_token, msg) {
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
   let options = { format: 'A4' };
-  let file = [{ url: "/reply_token", name: `${reply_token}.pdf` }];
-
-  html_to_pdf.generatePdfs(file, options).then(output => {
-    console.log("PDF Buffer:-", output); // PDF Buffer:- [{url: "https://example.com", name: "example.pdf", buffer: <PDF buffer>}]
+  // Example of options with args //
+  // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+  
+  let file = { content: "<h1>Welcome to html-pdf-node</h1>" };
+  // or //
+  html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+    console.log("PDF Buffer:-", pdfBuffer);
   });
 
   request.post(

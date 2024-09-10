@@ -97,7 +97,7 @@ function replypdf(reply_token, msg) {
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  let options = { format: 'A4' };
+  let options = { format: 'A4',path:`/${reply_token}` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   
@@ -128,7 +128,7 @@ function replypdf(reply_token, msg) {
               defaultAction: {
                 type: "uri",
                 label: "View detail",
-                uri: '/reply_token'
+                uri: `https://findlpt.onrender.com/${reply_token}`
               },
               actions: [
                 {
@@ -139,7 +139,7 @@ function replypdf(reply_token, msg) {
                 {
                   type: "uri",
                   label: "View detail",
-                  uri: '/reply_token'
+                  uri: `https://findlpt.onrender.com/${reply_token}`
                 }
               ]
             }

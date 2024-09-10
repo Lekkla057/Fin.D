@@ -11,6 +11,7 @@ const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
 const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require('html-pdf-node');
+const puppeteer = require('puppeteer');
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
@@ -91,21 +92,18 @@ function reply(reply_token, msg) {
     }
   );
 }
-function replypdf(reply_token, msg) {
+async function replypdf(reply_token, msg) {
   let headers = {
     "Content-Type": "application/json",
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  let options = { format: 'A4',path:`/` };
-  // Example of options with args //
-  // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-  
-  let file = { content: "<h1>Welcome to html-pdf-node</h1>" };
-  // or //
-  html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-    console.log("PDF Buffer:-", pdfBuffer);
-  });
+  const htmlContent = '<h1>Hello World</h1><p>This is custom HTML content.</p>';
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setContent(htmlContent);
+  await page.pdf({ path: `${reply_token}.pdf`, format: 'A4' });
+  await browser.close();
 
   request.post(
     {

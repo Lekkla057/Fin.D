@@ -8,12 +8,12 @@
     "express": "^4.20.0",
     "firebase": "^10.13.1",
     "html-pdf-node": "^1.0.8",
+    "puppeteer": "^23.3.0",
     "request": "^2.88.2"
   },
   "name": "find",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

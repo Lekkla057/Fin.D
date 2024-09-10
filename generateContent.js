@@ -129,7 +129,7 @@ function replypdf(reply_token, msg) {
               defaultAction: {
                 type: "uri",
                 label: "View detail",
-                uri: `https://findlpt.onrender.com/${reply_token}`
+                uri: `https://findlpt.onrender.com/${reply_token}.pdf`
               },
               actions: [
                 {
@@ -140,7 +140,7 @@ function replypdf(reply_token, msg) {
                 {
                   type: "uri",
                   label: "View detail",
-                  uri: `https://findlpt.onrender.com/${reply_token}`
+                  uri: `https://findlpt.onrender.com/${reply_token}.pdf`
                 }
               ]
             }

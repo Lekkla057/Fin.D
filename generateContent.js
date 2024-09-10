@@ -109,7 +109,7 @@ function replypdf(reply_token, msg) {
       url: "https://api.line.me/v2/bot/message/push",
       headers: headers,
       body: JSON.stringify({
-        to: "reply_token",
+        replyToken: "reply_token",
         messages: [
           {
             type: "template",

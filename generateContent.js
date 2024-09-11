@@ -143,7 +143,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
   h1{
-  text:center;
+  text-align:center;
   }
 </style>`
   })

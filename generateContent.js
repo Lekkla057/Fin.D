@@ -106,6 +106,7 @@ function replypdf(reply_token, msg) {
 <head>
 <meta http-equiv="Content-Language" content="th" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
 <body>
   <h1>บัญชีรายรับ-รายจ่าย</h1>
   <table>

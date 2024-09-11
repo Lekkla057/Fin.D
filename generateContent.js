@@ -101,7 +101,9 @@ function replypdf(reply_token, msg) {
   let options = { format: 'A4',path:`pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-  let content=`<table>
+  let content=`
+  <h1>บัญชีรายรับ-รายจ่าย</h1>
+  <table>
   <tr>
     <th>วันที่</th>
     <th>ประเภทธุรกรรม</th>
@@ -116,7 +118,24 @@ function replypdf(reply_token, msg) {
     <td>${obj.transaction}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
-  </tr>`
+  </tr>
+  <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>`
   })
   content+=`</table>`
   let file = { content: "<h1>Welcome to html-pdf-node</h1>" };
@@ -188,7 +207,7 @@ async function runSample(reply_token, text, userid) {
         amonttotal +
         "\n";
     });
-    replypdf(userid, textmassage);
+    replypdf(userid, data);
    // reply(reply_token, textmassage);
   } else {
     // The text query request.

@@ -101,7 +101,24 @@ function replypdf(reply_token, msg) {
   let options = { format: 'A4',path:`pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-  
+  let content=`<table>
+  <tr>
+    <th>วันที่</th>
+    <th>ประเภทธุรกรรม</th>
+    <th>จำนวนเงิน</th>
+    <th>คงเหลือ</th>
+  </tr>`
+  var summoney=0;
+  msg.forEach((obj) => {
+    summoney+=obj.amont;
+    content +=`  <tr>
+    <td>${obj.date}</td>
+    <td>${obj.transaction}</td>
+    <td>${obj.amont}</td>
+    <td>${summoney}</td>
+  </tr>`
+  })
+  content+=`</table>`
   let file = { content: "<h1>Welcome to html-pdf-node</h1>" };
   // or //
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {

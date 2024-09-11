@@ -6,7 +6,8 @@ require("dotenv").config();
 const {checkUser,pushTransection,get,test}=require("./database");
 const app = express();
 // 
-app.use('/pdfs', express.static('public'));
+app.use(express.static('public'));
+app.use('/pdfs', express.static('pdfs'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

@@ -138,7 +138,7 @@ tr:nth-child(even) {
 </style>`
   })
   content+=`</table>`
-  let file = { content: "<h1>Welcome to html-pdf-node</h1>" };
+  let file = { content: content };
   // or //
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
     console.log("PDF Buffer:-", pdfBuffer);

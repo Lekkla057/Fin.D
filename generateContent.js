@@ -108,20 +108,21 @@ function replypdf(reply_token, msg) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=windows-874">
 <body>
-  <h1>บัญชีรายรับ-รายจ่าย</h1>
+  <h1>Income and Expense Account</h1>
+  <hr></hr>
   <table>
   <tr>
-    <th>วันที่</th>
-    <th>ประเภทธุรกรรม</th>
-    <th>จำนวนเงิน</th>
-    <th>คงเหลือ</th>
+    <th>Date</th>
+    <th>Transaction</th>
+    <th>Amont</th>
+    <th>Balacne</th>
   </tr>`
   var summoney=0;
   msg.forEach((obj) => {
     summoney+=obj.amont;
     content +=`  <tr>
     <td>${obj.date}</td>
-    <td>${obj.transaction}</td>
+    <td>${obj.amont<0?"outcome":"income"}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>

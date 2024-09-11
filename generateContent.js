@@ -102,6 +102,11 @@ function replypdf(reply_token, msg) {
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   let content=`
+  <html>
+<head>
+<meta http-equiv="Content-Language" content="th" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
   <h1>บัญชีรายรับ-รายจ่าย</h1>
   <table>
   <tr>
@@ -137,7 +142,7 @@ tr:nth-child(even) {
 }
 </style>`
   })
-  content+=`</table>`
+  content+=`</table></body>`
   let file = { content: content };
   // or //
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {

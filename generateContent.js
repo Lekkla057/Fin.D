@@ -132,16 +132,16 @@ function replypdf(reply_token, msg) {
                 uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
               },
               actions: [
-                {
-                  type: "postback",
-                  label: "Buy",
-                  data: "action=buy&itemid=123"
-                },
-                {
-                  type: "uri",
-                  label: "View detail",
-                  uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
-                }
+                // {
+                //   type: "postback",
+                //   label: "Buy",
+                //   data: "action=buy&itemid=123"
+                // },
+                // {
+                //   type: "uri",
+                //   label: "View detail",
+                //   uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
+                // }
               ]
             }
           }

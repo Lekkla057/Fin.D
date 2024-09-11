@@ -124,11 +124,11 @@ function replypdf(reply_token, msg) {
               imageAspectRatio: "rectangle",
               imageSize: "cover",
               imageBackgroundColor: "#FFFFFF",
-              title: "Menu",
-              text: "Please select",
+              title: "Fin.D",
+              text: "รายการรายรับ รายจ่าย",
               defaultAction: {
                 type: "uri",
-                label: "View detail",
+                label: "ดูรายการ",
                 uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
               },
               actions: [
@@ -137,11 +137,11 @@ function replypdf(reply_token, msg) {
                 //   label: "Buy",
                 //   data: "action=buy&itemid=123"
                 // },
-                // {
-                //   type: "uri",
-                //   label: "View detail",
-                //   uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
-                // }
+                {
+                  type: "uri",
+                  label: "ดูรายการ",
+                  uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
+                }
               ]
             }
           }

@@ -142,6 +142,9 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+  h1{
+  text:center;
+  }
 </style>`
   })
   content+=`</table></body>`
@@ -149,7 +152,7 @@ tr:nth-child(even) {
   // or //
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
     console.log("PDF Buffer:-", pdfBuffer);
-  });
+  
 
   request.post(
     {
@@ -195,6 +198,7 @@ tr:nth-child(even) {
       console.log("status = " + JSON.stringify(res));
     }
   );
+});
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย") {

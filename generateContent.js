@@ -118,7 +118,7 @@ function replypdf(reply_token, msg) {
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
-    <th>เงิน</th>
+    <th>Balance</th>
   </tr>`
   var summoney=0;
   msg.forEach((obj) => {

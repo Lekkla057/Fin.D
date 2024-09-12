@@ -32,10 +32,8 @@ const firebaseConfig = {
   exports.pushTransection = async (userid,transaction,amont) => {
     try {
        // let numberOfElements = await db.count(`/transaction/${userid}`);
-        const dd = new Date();
-        var d = new Date(dd.getTime());
-        let textDate= d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
-console.log(textDate);
+       
+        let textDate= NOW()
 
         var obj={"userid":userid,"transaction":transaction,"amont":amont,"date":textDate}
         // db.push(`/transaction/${userid}[]`,obj);
@@ -72,3 +70,34 @@ console.log(textDate);
 
     }
   };
+  function NOW() {
+
+    var date = new Date();
+    var aaaa = date.getUTCFullYear();
+    var gg = date.getUTCDate();
+    var mm = (date.getUTCMonth() + 1);
+
+    if (gg < 10)
+        gg = "0" + gg;
+
+    if (mm < 10)
+        mm = "0" + mm;
+
+    var cur_day = aaaa + "-" + mm + "-" + gg;
+
+    var hours = date.getHours()
+    var minutes = date.getMinutes()
+    var seconds = date.getSeconds();
+
+    if (hours < 10)
+        hours = "0" + hours;
+
+    if (minutes < 10)
+        minutes = "0" + minutes;
+
+    if (seconds < 10)
+        seconds = "0" + seconds;
+
+    return cur_day + " " + hours + ":" + minutes + ":" + seconds;
+
+}

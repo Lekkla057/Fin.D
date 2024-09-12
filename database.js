@@ -49,7 +49,7 @@ const firebaseConfig = {
   };
   exports.get = async (userid) => {
     try {
-      const FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), orderBy("date", "desc"));
+      const FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), orderBy("date","desc"));
 
       const FinDSnapshot = await getDocs(FinD);
       const FinDList = FinDSnapshot.docs.map(

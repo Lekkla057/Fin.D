@@ -33,7 +33,12 @@ const firebaseConfig = {
     try {
        // let numberOfElements = await db.count(`/transaction/${userid}`);
         const d = new Date();
-        let textDate = d.toLocaleString();
+        let textDate = [(d.getMonth()+1).padLeft(),
+          d.getDate().padLeft(),
+          d.getFullYear()].join('/') +' ' +
+         [d.getHours().padLeft(),
+          d.getMinutes().padLeft(),
+          d.getSeconds().padLeft()].join(':');
         var obj={"userid":userid,"transaction":transaction,"amont":amont,"date":textDate}
         // db.push(`/transaction/${userid}[]`,obj);
         // await db.save();

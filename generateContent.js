@@ -107,6 +107,8 @@ function replypdf(reply_token, msg) {
 <meta http-equiv="Content-Language" content="th" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=windows-874">
+</head>
+
 <body>
   <h1>Income and Expense Account</h1>
   <hr></hr>
@@ -126,7 +128,9 @@ function replypdf(reply_token, msg) {
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>
-  <style>
+  `
+  })
+  content+=`<style>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -145,9 +149,7 @@ tr:nth-child(even) {
   h1{
   text-align:center;
   }
-</style>`
-  })
-  content+=`</table></body>`
+</style></table></body> </html>`
   console.log(content);
   let file = { content: content };
   // or //

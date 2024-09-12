@@ -71,8 +71,8 @@ const firebaseConfig = {
     }
   };
   function NOW() {
-
-    var date = new Date();
+    var d = new Date()
+    var date = new Date(d.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}));
     var aaaa = date.getUTCFullYear();
     var gg = date.getUTCDate();
     var mm = (date.getUTCMonth() + 1);

@@ -33,12 +33,10 @@ const firebaseConfig = {
     try {
        // let numberOfElements = await db.count(`/transaction/${userid}`);
         const d = new Date();
-        let textDate = [(d.getMonth()+1).padLeft(),
-          d.getDate().padLeft(),
-          d.getFullYear()].join('/') +' ' +
-         [d.getHours().padLeft(),
-          d.getMinutes().padLeft(),
-          d.getSeconds().padLeft()].join(':');
+        d = new Date(d.getTime() - 3000000);
+        let textDate= d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
+console.log(textDate);
+
         var obj={"userid":userid,"transaction":transaction,"amont":amont,"date":textDate}
         // db.push(`/transaction/${userid}[]`,obj);
         // await db.save();

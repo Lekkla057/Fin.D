@@ -115,7 +115,7 @@ function replypdf(reply_token, msg) {
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
-    <th>Balacne</th>
+    <th>เงิน</th>
   </tr>`
   var summoney=0;
   msg.forEach((obj) => {
@@ -148,6 +148,7 @@ tr:nth-child(even) {
 </style>`
   })
   content+=`</table></body>`
+  console.log(content);
   let file = { content: content };
   // or //
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {

@@ -102,8 +102,9 @@ function replypdf(reply_token, msg) {
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   let content=`
-  <html>
-<head>
+ <!doctype html>
+<html lang="th">
+<meta charset="utf-8">
 <meta http-equiv="Content-Language" content="th" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=windows-874">

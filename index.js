@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const port = process.env.PORT || 3000;
 var d=1
-setInterval(function() {console.log("hi", new Date());}, 500000);
+setInterval(function() {console.log("hi", new Date());}, 50000);
 
 app.get("/", (req, res) => { 
   res.send("Node.js and Google Gem ini integration example");

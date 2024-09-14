@@ -149,12 +149,13 @@ table {
 }
 
 td, th {
-  width :25%
+  width :25%;
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-tr {   width :100%
+tr {   width :100%;
+display: flex;
 }
 tr:nth-child(even) {
   background-color: #dddddd;

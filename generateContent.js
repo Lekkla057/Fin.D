@@ -133,7 +133,7 @@ function replypdf(reply_token, msg) {
     summoney += obj.amont;
     content += `  <tr>
     <td>${obj.date}</td>
-    <td>${obj.amont < 0 ? "outcome" : "income"}</td>
+    <td>${obj.transaction}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>
@@ -172,7 +172,7 @@ tr:nth-child(even) {
     if (err) return console.log(err);
     console.log(res);
   
-    console.log("PDF Buffer:-", pdfBuffer);
+    // console.log("PDF Buffer:-", pdfBuffer);
 
     request.post(
       {

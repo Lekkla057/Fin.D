@@ -12,8 +12,8 @@ const uuid = require("uuid");
 const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer");
-const {jsPDF} = request("jspdf");
-const doc = new jsPDF();
+const { PdfDocument } =require("@ironsoftware/ironpdf");
+
 /**
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
@@ -168,11 +168,14 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  doc.text(content,10,10)
-  doc.save(`pdfs/${reply_token}2.pdf`);
+
   html_to_pdf.generatePdf(file, options).then((pdfBuffer) => {
     console.log("PDF Buffer:-", pdfBuffer);
-
+    (async () => {
+      const htmlContent = "<h1>Hello world!</h1><p><small>A ต๋องหล่อPDF brought to you by IronPDF for Node.js!</small></p>";
+      const pdf2 = await PdfDocument.fromHtml(htmlContent);
+      await pdf2.saveAs(`pdfs/${reply_token}2.pdf` );
+  })();
     request.post(
       {
         url: "https://api.line.me/v2/bot/message/push",

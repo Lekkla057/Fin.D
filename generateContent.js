@@ -10,8 +10,8 @@ const request = require("request");
 const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
 const { checkUser, pushTransection, get } = require("./database");
-var html_to_pdf = require('html-pdf-node');
-const puppeteer = require('puppeteer');
+var html_to_pdf = require("html-pdf-node");
+const puppeteer = require("puppeteer");
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
@@ -98,10 +98,10 @@ function replypdf(reply_token, msg) {
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  let options = { format: 'A4',path:`pdfs/${reply_token}.pdf` };
+  let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-  let content=`
+  let content = `
  <!doctype html>
 <html lang="th">
 <meta charset="utf-8">
@@ -117,25 +117,28 @@ function replypdf(reply_token, msg) {
   <h1>Income and Expense Account</h1>
   <hr></hr>
   <table>
+    <thead>
+
   <tr>
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
     <th>Balanceต๋อง</th>
-  </tr>  <tbody>
-`
-  var summoney=0;
+  </tr>  </thead>
+  <tbody>
+`;
+  var summoney = 0;
   msg.forEach((obj) => {
-    summoney+=obj.amont;
-    content +=`  <tr>
+    summoney += obj.amont;
+    content += `  <tr>
     <td>${obj.date}</td>
-    <td>${obj.amont<0?"outcome":"income"}</td>
+    <td>${obj.amont < 0 ? "outcome" : "income"}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>
-  `
-  })
-  content+=`</tbody>
+  `;
+  });
+  content += `</tbody>
 <style>
   tbody { display: flex; flex-direction: column-reverse; }
 
@@ -157,59 +160,59 @@ tr:nth-child(even) {
   h1{
   text-align:center;
   }
-</style></table></body> </html>`
+</style></table></body> </html>`;
   console.log(content);
   let file = { content: content };
   // or //
-  html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+  html_to_pdf.generatePdf(file, options).then((pdfBuffer) => {
     console.log("PDF Buffer:-", pdfBuffer);
-  
 
-  request.post(
-    {
-      url: "https://api.line.me/v2/bot/message/push",
-      headers: headers,
-      body: JSON.stringify({
-        to: reply_token,
-        messages: [
-          {
-            type: "template",
-            altText: "This is a buttons template",
-            template: {
-              type: "buttons",
-              thumbnailImageUrl: "https://www.nylon.com.sg/wp-content/uploads/2017/07/LINE-Friends.jpg",
-              imageAspectRatio: "rectangle",
-              imageSize: "cover",
-              imageBackgroundColor: "#FFFFFF",
-              title: "Fin.D",
-              text: "รายการรายรับ รายจ่าย",
-              defaultAction: {
-                type: "uri",
-                label: "ดูรายการ",
-                uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
-              },
-              actions: [
-                // {
-                //   type: "postback",
-                //   label: "Buy",
-                //   data: "action=buy&itemid=123"
-                // },
-                {
+    request.post(
+      {
+        url: "https://api.line.me/v2/bot/message/push",
+        headers: headers,
+        body: JSON.stringify({
+          to: reply_token,
+          messages: [
+            {
+              type: "template",
+              altText: "This is a buttons template",
+              template: {
+                type: "buttons",
+                thumbnailImageUrl:
+                  "https://www.nylon.com.sg/wp-content/uploads/2017/07/LINE-Friends.jpg",
+                imageAspectRatio: "rectangle",
+                imageSize: "cover",
+                imageBackgroundColor: "#FFFFFF",
+                title: "Fin.D",
+                text: "รายการรายรับ รายจ่าย",
+                defaultAction: {
                   type: "uri",
                   label: "ดูรายการ",
-                  uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`
-                }
-              ]
-            }
-          }
-        ]
-      }),
-    },
-    (err, res, body) => {
-      console.log("status = " + JSON.stringify(res));
-    }
-  );
-});
+                  uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`,
+                },
+                actions: [
+                  // {
+                  //   type: "postback",
+                  //   label: "Buy",
+                  //   data: "action=buy&itemid=123"
+                  // },
+                  {
+                    type: "uri",
+                    label: "ดูรายการ",
+                    uri: `https://findlpt.onrender.com/pdfs/${reply_token}.pdf`,
+                  },
+                ],
+              },
+            },
+          ],
+        }),
+      },
+      (err, res, body) => {
+        console.log("status = " + JSON.stringify(res));
+      }
+    );
+  });
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย") {
@@ -230,7 +233,7 @@ async function runSample(reply_token, text, userid) {
         "\n";
     });
     replypdf(userid, data);
-   // reply(reply_token, textmassage);
+    // reply(reply_token, textmassage);
   } else {
     // The text query request.
     const request = {

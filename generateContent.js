@@ -350,7 +350,7 @@ async function checkTTypeTransaction(text) {
 async function createPDF(content,usid) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.setContent("<h1>Hello,ต๋องงงงงงง Puppeteer!</h1>");
+  await page.setContent(content);
   await page.pdf({ path: `pdfs/${usid}.pdf`, format: 'A4' });
   await browser.close();
 }

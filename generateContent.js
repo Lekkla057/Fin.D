@@ -117,17 +117,15 @@ function replypdf(reply_token, msg) {
   <h1>Income and Expense Account</h1>
   <hr></hr>
   <table>
-  <div class="h">
-    <thead >
+    <thead>
 
   <tr>
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
     <th>Balanceต๋อง</th>
-  </tr>  </thead></div>
-   <div class="b">
- <tbody>
+  </tr>  </thead>
+  <tbody>
 `;
   var summoney = 0;
   msg.forEach((obj) => {
@@ -140,16 +138,10 @@ function replypdf(reply_token, msg) {
   </tr>
   `;
   });
-  content += `</tbody></div>
+  content += `</tbody>
 <style>
-.h{
-display: flex; 
-}
-.b{
-display: flex; flex-direction: column-reverse;
-}
-  tbody { width:100% }
-thead {width:100%}
+  tbody { display: flex; flex-direction: column-reverse; }
+
 table {
   font-family: arial, sans-serif,"Sarabun";
   border-collapse: collapse;
@@ -157,11 +149,13 @@ table {
 }
 
 td, th {
+  width :25%
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-
+tr {   width :100%
+}
 tr:nth-child(even) {
   background-color: #dddddd;
 }

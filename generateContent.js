@@ -93,13 +93,13 @@ function reply(reply_token, msg) {
     }
   );
 }
-function replypdf(reply_token, msg) {
+async function replypdf(reply_token, msg) {
   let headers = {
     "Content-Type": "application/json",
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
+  // let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   let content = `
@@ -124,7 +124,7 @@ function replypdf(reply_token, msg) {
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
-    <th>Balanceต๋อง</th>
+    <th>Balance</th>
   </tr>  </thead>
   <tbody>
 `;
@@ -133,7 +133,7 @@ function replypdf(reply_token, msg) {
     summoney += obj.amont;
     content += `  <tr>
     <td>${obj.date}</td>
-    <td>${obj.amont < 0 ? "outcome" : "income"}</td>
+    <td>${obj.transaction}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>
@@ -166,16 +166,11 @@ tr:nth-child(even) {
   }
 </style></table></body> </html>`;
   console.log(content);
-  let file = { content: content };
+  // let file = { content: content };
   // or //
+ await createPDF(content,reply_token)
+  
 
-  html_to_pdf.generatePdf(file, options).then((pdfBuffer) => {
-    console.log("PDF Buffer:-", pdfBuffer);
-    (async () => {
-      const htmlContent = "<h1>Hello world!</h1><p><small>A ต๋องหล่อPDF brought to you by IronPDF for Node.js!</small></p>";
-      const pdf2 = await PdfDocument.fromHtml(htmlContent);
-      await pdf2.saveAs(`pdfs/${reply_token}2.pdf` );
-  })();
     request.post(
       {
         url: "https://api.line.me/v2/bot/message/push",
@@ -220,8 +215,7 @@ tr:nth-child(even) {
       (err, res, body) => {
         console.log("status = " + JSON.stringify(res));
       }
-    );
-  });
+    )
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย") {
@@ -352,4 +346,11 @@ async function checkTTypeTransaction(text) {
   const result = responses[0].queryResult;
   console.log(result.fulfillmentText);
   return result.fulfillmentText;
+}
+async function createPDF(content,usid) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setContent(content);
+  await page.pdf({ path: `pdfs/${usid}.pdf`, format: 'A4' });
+  await browser.close();
 }

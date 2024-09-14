@@ -168,7 +168,7 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  pdf.create(html, { format: 'Letter' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
+  pdf.create(content, { format: 'Letter' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
     if (err) return console.log(err);
     console.log(res);
   

@@ -122,7 +122,8 @@ function replypdf(reply_token, msg) {
     <th>Transaction</th>
     <th>Amont</th>
     <th>Balanceต๋อง</th>
-  </tr>`
+  </tr>  <tbody>
+`
   var summoney=0;
   msg.forEach((obj) => {
     summoney+=obj.amont;
@@ -134,7 +135,10 @@ function replypdf(reply_token, msg) {
   </tr>
   `
   })
-  content+=`<style>
+  content+=`</tbody>
+<style>
+  tbody { display: flex; flex-direction: column-reverse; }
+
 table {
   font-family: arial, sans-serif,"Sarabun";
   border-collapse: collapse;

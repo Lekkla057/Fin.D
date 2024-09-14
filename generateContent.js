@@ -11,8 +11,8 @@ const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
 const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require("html-pdf-node");
-const puppeteer = require('puppeteer');
-const { PdfDocument } =require("@ironsoftware/ironpdf");
+const puppeteer = require("puppeteer");
+const pdf = require('html-pdf');
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
@@ -93,13 +93,13 @@ function reply(reply_token, msg) {
     }
   );
 }
-async function replypdf(reply_token, msg) {
+function replypdf(reply_token, msg) {
   let headers = {
     "Content-Type": "application/json",
     Authorization:
       "Bearer BrNPhLaaBLY8PfG8xGXQx5xMqHORaVg3ZmBDywQlCofl/FsnRD4L4u4GoxJ55oS7AievR0UahaEY2l5C9BGBeG9ZpeAOYuW+XR3eDQm/0QYYEyU85amf9m5pLNrgEFJL7wASC+mnghEQpXdlRYTNjgdB04t89/1O/w1cDnyilFU=",
   };
-  // let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
+  let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
   let content = `
@@ -124,7 +124,7 @@ async function replypdf(reply_token, msg) {
     <th>Date</th>
     <th>Transaction</th>
     <th>Amont</th>
-    <th>Balance</th>
+    <th>Balanceต๋อง</th>
   </tr>  </thead>
   <tbody>
 `;
@@ -133,7 +133,7 @@ async function replypdf(reply_token, msg) {
     summoney += obj.amont;
     content += `  <tr>
     <td>${obj.date}</td>
-    <td>${obj.transaction}</td>
+    <td>${obj.amont < 0 ? "outcome" : "income"}</td>
     <td>${obj.amont}</td>
     <td>${summoney}</td>
   </tr>
@@ -166,10 +166,13 @@ tr:nth-child(even) {
   }
 </style></table></body> </html>`;
   console.log(content);
-  // let file = { content: content };
+  let file = { content: content };
   // or //
- await createPDF(content,reply_token)
+  pdf.create(html, { format: 'Letter' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
+    if (err) return console.log(err);
+    console.log(res);
   
+    console.log("PDF Buffer:-", pdfBuffer);
 
     request.post(
       {
@@ -215,7 +218,8 @@ tr:nth-child(even) {
       (err, res, body) => {
         console.log("status = " + JSON.stringify(res));
       }
-    )
+    );
+  });
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย") {
@@ -346,11 +350,4 @@ async function checkTTypeTransaction(text) {
   const result = responses[0].queryResult;
   console.log(result.fulfillmentText);
   return result.fulfillmentText;
-}
-async function createPDF(content,usid) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.setContent(content);
-  await page.pdf({ path: `pdfs/${usid}.pdf`, format: 'A4' });
-  await browser.close();
 }

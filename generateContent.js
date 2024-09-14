@@ -11,7 +11,7 @@ const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
 const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require("html-pdf-node");
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
 const { PdfDocument } =require("@ironsoftware/ironpdf");
 
 /**
@@ -350,7 +350,7 @@ async function checkTTypeTransaction(text) {
 async function createPDF(content,usid) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.setContent(content);
+  await page.setContent("<h1>Hello,ต๋องงงงงงง Puppeteer!</h1>");
   await page.pdf({ path: `pdfs/${usid}.pdf`, format: 'A4' });
   await browser.close();
 }

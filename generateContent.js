@@ -126,7 +126,7 @@ function replypdf(reply_token, msg) {
     <th>Amont</th>
     <th>Balanceต๋อง</th>
   </tr>  </thead>
-  <tbody>
+  <tbody class="sarabun-thin">
 `;
   var summoney = 0;
   msg.forEach((obj) => {
@@ -168,7 +168,7 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  pdf.create(content, { format: 'Letter' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
+  pdf.create(content, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
     if (err) return console.log(err);
     console.log(res);
   

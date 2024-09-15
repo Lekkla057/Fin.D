@@ -11,6 +11,7 @@
     "html-pdf": "^3.0.1",
     "html-pdf-node": "^1.0.8",
     "jspdf": "^2.5.1",
+    "pretty-data": "^0.40.0",
     "puppeteer": "^23.3.0",
     "request": "^2.88.2"
   },

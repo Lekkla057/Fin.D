@@ -109,7 +109,6 @@ function replypdf(reply_token, msg) {
 <meta http-equiv="Content-Language" content="th" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=windows-874">
-<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -124,7 +123,7 @@ function replypdf(reply_token, msg) {
     <th>Amont</th>
     <th>Balanceต๋อง</th>
   </tr>  </thead>
-  <tbody class="sarabun-thin">
+  <tbody >
 `;
   var summoney = 0;
   msg.forEach((obj) => {

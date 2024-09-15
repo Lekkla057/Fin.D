@@ -166,9 +166,8 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  pdf.create(content, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
-    if (err) return console.log(err);
-    console.log(res);
+  html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+    console.log(pdfBuffer);
   
     // console.log("PDF Buffer:-", pdfBuffer);
 

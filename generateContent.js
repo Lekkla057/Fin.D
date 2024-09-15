@@ -13,7 +13,7 @@ const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer");
 const pdf = require('html-pdf');
-
+const fs = require('fs');
 /**
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
@@ -168,7 +168,11 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+  fs.writeFile(path.resolve(__dirname,'pdfs/test.html'),content,()=>{
+
+    const url ="https://findlpt.onrender.com/pdfs/test.html"
+  
+  html_to_pdf.generatePdf(url, options).then(pdfBuffer => {
     console.log(pdfBuffer);
   
     // console.log("PDF Buffer:-", pdfBuffer);
@@ -218,7 +222,7 @@ tr:nth-child(even) {
         console.log("status = " + JSON.stringify(res));
       }
     );
-  });
+  });})
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย") {

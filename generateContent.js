@@ -293,7 +293,7 @@ async function runSample(reply_token, text, userid) {
       data.forEach((element) => {
         amontTotal += element.amont;
       });
-      var text = `ยืนยันการฝากเงิน\nคุณมียอดเงินทั้งหมด ${amontTotal} บาท\nขอบคุณที่ใช้บริการ`;
+      var text = `ยืนยันการ${transec}\nคุณมียอดเงินทั้งหมด ${amontTotal} บาท\nขอบคุณที่ใช้บริการ`;
       reply(reply_token, text);
     }
     // else if (result.intent.displayName=="income-outcome - custom-2 - yes") {

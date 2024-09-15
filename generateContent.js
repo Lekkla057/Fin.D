@@ -13,6 +13,7 @@ const { checkUser, pushTransection, get } = require("./database");
 var html_to_pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer");
 const pdf = require('html-pdf');
+var fs = require('fs');
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
@@ -165,7 +166,9 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  pdf.create(content, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
+  var htmlg = fs.readFileSync(content, 'utf8');
+
+  pdf.create(htmlg, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
     if (err) return console.log(err);
     console.log(res);
   

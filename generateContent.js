@@ -14,6 +14,8 @@ var html_to_pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer");
 const pdf = require('html-pdf');
 const fs = require('fs');
+var pd = require('pretty-data').pd;
+
 /**
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
@@ -168,7 +170,9 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-    fs.writeFile("pdfs/test.html", content, function (err) {
+  var pdHtml= pd.xml(content);
+
+fs.writeFile("pdfs/test.html",pdHtml, function (err){
 
     const url ="https://findlpt.onrender.com/pdfs/test.html"
   

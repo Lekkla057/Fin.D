@@ -186,7 +186,7 @@ tr:nth-child(even) {
               template: {
                 type: "buttons",
                 thumbnailImageUrl:
-                  "https://www.nylon.com.sg/wp-content/uploads/2017/07/LINE-Friends.jpg",
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROGx1uKXsBH1_Kx4IhOoxSUqS1wBLyyeM9yQ&s",
                 imageAspectRatio: "rectangle",
                 imageSize: "cover",
                 imageBackgroundColor: "#FFFFFF",

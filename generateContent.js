@@ -166,9 +166,7 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  var htmlg = fs.readFileSync(content, 'utf8');
-
-  pdf.create(htmlg, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
+  pdf.create(content, { format: 'A4' }).toFile(`pdfs/${reply_token}.pdf`, (err, res) => {
     if (err) return console.log(err);
     console.log(res);
   

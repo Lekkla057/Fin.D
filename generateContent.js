@@ -168,7 +168,7 @@ tr:nth-child(even) {
   console.log(content);
   let file = { content: content };
   // or //
-  fs.writeFile(path.resolve(__dirname,'pdfs/test.html'),content,()=>{
+    fs.writeFile("pdfs/test.html", content, function (err) {
 
     const url ="https://findlpt.onrender.com/pdfs/test.html"
   

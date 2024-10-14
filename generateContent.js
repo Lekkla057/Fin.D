@@ -154,30 +154,27 @@ function replypdf(reply_token, msg) {
   </tbody>
   <tbody>
   <tr>
-    <td colspan="2" style="width: 40%;">สรุป</td>
+    <td colspan="2" >สรุป</td>
     <td>${income}</td>
     <td>${outcome}</td>
     <td>${summoney}</td>
   </tr>
   </tbody>
 <style>
-  tbody { display: flex; flex-direction: column-reverse; }
+  tbody { }
 
 table {
   font-family: "Sarabun", sans-serif;
   border-collapse: collapse;
-  width: 100%;
   text-align-last: center;
 }
 
 td, th {
-  width :20%;
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-tr {   width :100%;
-display: flex;
+tr {   
 }
 tr:nth-child(even) {
   background-color: #dddddd;

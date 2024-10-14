@@ -123,25 +123,41 @@ function replypdf(reply_token, msg) {
     <thead>
 
   <tr>
-    <th>Date</th>
-    <th>Transaction</th>
-    <th>Amont</th>
-    <th>Balanceต๋อง</th>
+    <th>วันที่</th>
+    <th>รายการ</th>
+    <th>รายรับ</th>
+    <th>รายจ่าย</th>
+    <th>คงเหลือ</th>
   </tr>  </thead>
   <tbody >
 `;
   var summoney = 0;
+  var income=0
+  var outcome=0
   msg.forEach((obj) => {
     summoney += obj.amont;
+    if(obj.amont>0){
+      income+=obj.amont;
+    }else{
+      outcome+=obj.amont;
+    }
     content += `  <tr>
     <td>${obj.date}</td>
     <td>${obj.transaction}</td>
-    <td>${obj.amont}</td>
+    <td>${obj.amont>0?obj.amont:""}</td>
+    <td>${obj.amont<0?obj.amont:""}</td>
     <td>${summoney}</td>
   </tr>
   `;
   });
-  content += `</tbody>
+  content += `
+  <tr>
+    <td colspan="2">สรุป</td>
+    <td>${income}</td>
+    <td>${outcome}</td>
+    <td>${summoney}</td>
+  </tr>
+  </tbody>
 <style>
   tbody { display: flex; flex-direction: column-reverse; }
 
@@ -152,7 +168,7 @@ table {
 }
 
 td, th {
-  width :25%;
+  width :20%;
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;

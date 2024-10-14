@@ -167,6 +167,7 @@ table {
   font-family: "Sarabun", sans-serif;
   border-collapse: collapse;
   text-align-last: center;
+  width: 100%;
 }
 
 td, th {

@@ -151,8 +151,10 @@ function replypdf(reply_token, msg) {
   `;
   });
   content += `
+  </tbody>
+  <tbody>
   <tr>
-    <td colspan="2">สรุป</td>
+    <td colspan="2" style="width: 40%;">สรุป</td>
     <td>${income}</td>
     <td>${outcome}</td>
     <td>${summoney}</td>
@@ -165,6 +167,7 @@ table {
   font-family: "Sarabun", sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align-last: center;
 }
 
 td, th {

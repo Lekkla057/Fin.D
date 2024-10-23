@@ -131,10 +131,10 @@ function replypdf(reply_token, msg) {
   </tr>  </thead>
   <tbody >
 `;
-  var summoney = 0;
+  var summoney = msg.sumAmount;
   var income=0
   var outcome=0
-  msg.forEach((obj) => {
+  msg.data.forEach((obj) => {
     summoney += obj.amont;
     if(obj.amont>0){
       income+=obj.amont;
@@ -305,9 +305,9 @@ async function runSample(reply_token, text, userid) {
         pushTransection(userid, transec, -amont);
       }
       var data = await get(userid);
-      console.log(data);
+      console.log(data.data);
       var amontTotal = 0;
-      data.forEach((element) => {
+      data.data.forEach((element) => {
         amontTotal += element.amont;
       });
       var text = `ยืนยันการ${transec}\nคุณมียอดเงินทั้งหมด ${amontTotal} บาท\nขอบคุณที่ใช้บริการ`;

@@ -62,17 +62,21 @@ const firebaseConfig = {
   
       if (mm < 10)
           mm = "0" + mm;
-      var firstday=gg;
-      var lastday=gg;
+      var firstday=d // Get current day number, converting Sun. to 7
+      var day = firstday.getDay() || 7; // Get current day number, converting Sun. to 7
+      if (day !== 1) // Only manipulate the date if it isn't Mon.
+        today.setHours(-24 * (day));
+      var lastday=firstday.getDate()+1;
       var cur_day = aaaa + "-" + mm;
-      var f_day = aaaa + "-" + mm + "-" + firstday;
+      var cur_day_add_1 = aaaa + "-" + (mm+1);
+      var f_day = aaaa + "-" + mm + "-" + firstday.getDate();
       var l_day = aaaa + "-" + mm + "-" + lastday;
     console.log(cur_day);
     
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'){
         console.log("ดูบัญชีรายรับ-รายจ่าย รายเดือน");
         
-        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), where("date",">=",cur_day), where("date","<=",cur_day), orderBy("date"));
+        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), where("date",">=",cur_day), where("date","<=",cur_day_add_1), orderBy("date"));
       }
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์'){
         console.log("ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์");

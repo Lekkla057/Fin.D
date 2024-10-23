@@ -248,22 +248,22 @@ fs.writeFile("pdfs/test.html",pdHtml, function (err){
 }
 async function runSample(reply_token, text, userid) {
   if (text == "ดูบัญชีรายรับ-รายจ่าย รายเดือน"||text == "ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์") {
-    var data = await get(userid);
+    var data = await get(userid,text);
     console.log(data);
-    var textmassage = "";
-    var amonttotal = 0;
-    data.forEach((element) => {
-      amonttotal += element.amont;
-      textmassage +=
-        element.transaction +
-        " วันที่" +
-        element.date +
-        " จำนวน" +
-        element.amont +
-        " คงเหลือ" +
-        amonttotal +
-        "\n";
-    });
+    // var textmassage = "";
+    // var amonttotal = 0;
+    // data.forEach((element) => {
+    //   amonttotal += element.amont;
+    //   textmassage +=
+    //     element.transaction +
+    //     " วันที่" +
+    //     element.date +
+    //     " จำนวน" +
+    //     element.amont +
+    //     " คงเหลือ" +
+    //     amonttotal +
+    //     "\n";
+    // });
     replypdf(userid, data);
     // reply(reply_token, textmassage);
   } else {

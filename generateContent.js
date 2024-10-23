@@ -104,7 +104,11 @@ function replypdf(reply_token, msg,text) {
   let options = { format: "A4", path: `pdfs/${reply_token}.pdf` };
   // Example of options with args //
   // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
-  let month=formatMonth(msg.month);
+  var months_th = [ "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม", ];
+
+  let monthName=months_th[msg.month-1];
+  console.log(monthName);
+  
   let content = `
  <!doctype html>
 <html lang="th">
@@ -119,7 +123,7 @@ function replypdf(reply_token, msg,text) {
 
 <body>
   <h1>Income and Expense Account</h1>
-  <h3>${text=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'?month:msg.firstday+" - "+msg.lastday}</h3>
+  <h3>${text=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'?monthName:msg.firstday+" - "+msg.lastday}</h3>
   <hr></hr>
   <table>
     <thead>

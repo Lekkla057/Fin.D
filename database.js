@@ -67,7 +67,8 @@ const firebaseConfig = {
       var cur_day = aaaa + "-" + mm;
       var f_day = aaaa + "-" + mm + "-" + firstday;
       var l_day = aaaa + "-" + mm + "-" + lastday;
-
+    console.log(cur_day);
+    
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'){
         console.log("ดูบัญชีรายรับ-รายจ่าย รายเดือน");
         

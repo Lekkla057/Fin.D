@@ -50,7 +50,7 @@ const firebaseConfig = {
   };
   exports.get = async (userid,datetext) => {
     try {
-      const FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), orderBy("date"));
+      var FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), orderBy("date"));
       var d = new Date()
       var date = new Date(d.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}));
       var aaaa = date.getUTCFullYear();
@@ -71,12 +71,12 @@ const firebaseConfig = {
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'){
         console.log("ดูบัญชีรายรับ-รายจ่าย รายเดือน");
         
-        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid),where("date",">=",cur_day),where("date","<=",cur_day), orderBy("date"));
+        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), where("date",">=",cur_day), where("date","<=",cur_day), orderBy("date"));
       }
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์'){
         console.log("ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์");
 
-        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid),where("date",">=",f_day),where("date","<=",l_day), orderBy("date"));
+        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), where("date",">=",f_day), where("date","<=",l_day), orderBy("date"));
       }
       const FinDSnapshot = await getDocs(FinD);
       const FinDList = FinDSnapshot.docs.map(

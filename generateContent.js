@@ -184,7 +184,7 @@ tr:nth-child(even) {
   text-align:center;
   }
 </style></table></body> </html>`;
-  console.log(content);
+ // console.log(content);
   // let file = { content: content };
   // or //
   var pdHtml= pd.xml(content);
@@ -195,7 +195,7 @@ fs.writeFile("pdfs/test.html",pdHtml, function (err){
     let file = { url: url };
 
   html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-    console.log(pdfBuffer);
+   // console.log(pdfBuffer);
   
     // console.log("PDF Buffer:-", pdfBuffer);
 

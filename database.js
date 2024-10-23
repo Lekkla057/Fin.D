@@ -69,9 +69,13 @@ const firebaseConfig = {
       var l_day = aaaa + "-" + mm + "-" + lastday;
 
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'){
+        console.log("ดูบัญชีรายรับ-รายจ่าย รายเดือน");
+        
         FinD = query(collection(db2, 'FinD'), where("userid", "==", userid,where("date",">=",cur_day),where("date","<=",cur_day)), orderBy("date"));
       }
       if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์'){
+        console.log("ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์");
+
         FinD = query(collection(db2, 'FinD'), where("userid", "==", userid,where("date",">=",f_day),where("date","<=",l_day)), orderBy("date"));
       }
       const FinDSnapshot = await getDocs(FinD);

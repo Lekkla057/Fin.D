@@ -188,6 +188,7 @@ tr:nth-child(even) {
 }
   h1,h3{
   text-align:center;
+  font-family: "Sarabun", sans-serif;
   }
 </style></table></body> </html>`;
   console.log(content);

@@ -247,7 +247,7 @@ fs.writeFile("pdfs/test.html",pdHtml, function (err){
   });})
 }
 async function runSample(reply_token, text, userid) {
-  if (text == "ดูบัญชีรายรับ-รายจ่าย") {
+  if (text == "ดูบัญชีรายรับ-รายจ่าย รายเดือน"||text == "ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์") {
     var data = await get(userid);
     console.log(data);
     var textmassage = "";

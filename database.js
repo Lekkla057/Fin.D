@@ -48,10 +48,32 @@ const firebaseConfig = {
 
     }
   };
-  exports.get = async (userid) => {
+  exports.get = async (userid,datetext) => {
     try {
       const FinD = query(collection(db2, 'FinD'), where("userid", "==", userid), orderBy("date"));
+      var d = new Date()
+      var date = new Date(d.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}));
+      var aaaa = date.getUTCFullYear();
+      var gg = date.getUTCDate();
+      var mm = (date.getUTCMonth() + 1);
+  
+      if (gg < 10)
+          gg = "0" + gg;
+  
+      if (mm < 10)
+          mm = "0" + mm;
+      var firstday=gg;
+      var lastday=gg;
+      var cur_day = aaaa + "-" + mm;
+      var f_day = aaaa + "-" + mm + "-" + firstday;
+      var l_day = aaaa + "-" + mm + "-" + lastday;
 
+      if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'){
+        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid,where("date",">=",cur_day),where("date","<=",cur_day)), orderBy("date"));
+      }
+      if(datetext=='ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์'){
+        FinD = query(collection(db2, 'FinD'), where("userid", "==", userid,where("date",">=",f_day),where("date","<=",l_day)), orderBy("date"));
+      }
       const FinDSnapshot = await getDocs(FinD);
       const FinDList = FinDSnapshot.docs.map(
         function(doc){

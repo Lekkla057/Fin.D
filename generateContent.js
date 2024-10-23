@@ -181,7 +181,7 @@ tr {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-  h1{
+  h1,h3{
   text-align:center;
   }
 </style></table></body> </html>`;
@@ -378,7 +378,10 @@ async function checkTTypeTransaction(text) {
   return result.fulfillmentText;
 }
 function formatMonth(mm){
-
+  console.log(mm);
+  
   var months_th = [ "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม", ];
+  console.log(months_th[mm-1]);
+  
   return months_th[mm-1];
 }

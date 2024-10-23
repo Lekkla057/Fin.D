@@ -118,7 +118,7 @@ function replypdf(reply_token, msg,text) {
 
 <body>
   <h1>Income and Expense Account</h1>
-  <h3>${text=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'?formatMonth(msg.mm):msg.f_day+" - "+msg.l_day}</h3>
+  <h3>${text=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'?formatMonth(msg.month):msg.firstday+" - "+msg.lastday}</h3>
   <hr></hr>
   <table>
     <thead>

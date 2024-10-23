@@ -190,7 +190,7 @@ tr:nth-child(even) {
   text-align:center;
   }
 </style></table></body> </html>`;
- // console.log(content);
+  console.log(content);
   // let file = { content: content };
   // or //
   var pdHtml= pd.xml(content);

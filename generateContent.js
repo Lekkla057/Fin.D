@@ -95,7 +95,7 @@ function reply(reply_token, msg) {
     }
   );
 }
-function replypdf(reply_token, msg) {
+function replypdf(reply_token, msg,text) {
   let headers = {
     "Content-Type": "application/json",
     Authorization:
@@ -118,6 +118,7 @@ function replypdf(reply_token, msg) {
 
 <body>
   <h1>Income and Expense Account</h1>
+  <h3>${text=='ดูบัญชีรายรับ-รายจ่าย รายเดือน'?formatMonth(msg.mm):msg.f_day+" - "+msg.l_day}</h3>
   <hr></hr>
   <table>
     <thead>
@@ -264,7 +265,7 @@ async function runSample(reply_token, text, userid) {
     //     amonttotal +
     //     "\n";
     // });
-    replypdf(userid, data);
+    replypdf(userid, data,text);
     // reply(reply_token, textmassage);
   } else {
     // The text query request.
@@ -375,4 +376,9 @@ async function checkTTypeTransaction(text) {
   const result = responses[0].queryResult;
   console.log(result.fulfillmentText);
   return result.fulfillmentText;
+}
+function formatMonth(mm){
+
+  var months_th = [ "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม", ];
+  return months_th[mm-1];
 }

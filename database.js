@@ -105,7 +105,7 @@ const firebaseConfig = {
         console.log(userid);
         // var data=await db.getData(`/transaction/${userid}`);
         console.log(FinDList);
-        return {data:FinDList,sumAmount:sum};
+        return {data:FinDList,sumAmount:sum,firstday:f_day,lastday:l_day,month:mm};
     } catch (error) {
       console.error(error);
       return error

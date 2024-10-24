@@ -302,7 +302,7 @@ async function runSample(reply_token, text, userid) {
       const result = await model.generateContent(text);
       var textGEMINI = result.response.candidates[0].content.parts[0].text;
       reply(reply_token, textGEMINI);
-    } else if (result.intent.displayName == "income-outcome - custom - yes") {
+    } else if (result.intent.displayName == "income-outcome - custom2 - yes") {
       var transec = result.outputContexts[0].parameters.fields.any.stringValue;
       var amont = result.outputContexts[0].parameters.fields.number.numberValue;
       var typetransaction = await checkTTypeTransaction(transec);

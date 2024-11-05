@@ -69,11 +69,11 @@ const firebaseConfig = {
       if (day !== 1) // Only manipulate the date if it isn't Mon.
       firstday.setHours(-24 * (day));
       var f_day_formate=firstday.getDate()<10?"0"+firstday.getDate():firstday.getDate()
-      var lastday=f_day_formate+6;
+      var lastday=firstday.getDate()+6;
       var cur_day = aaaa + "-" + mm;
       var cur_day_add_1 = aaaa + "-" + (mm+1);
       var f_day = aaaa + "-" + mm + "-" + f_day_formate;
-      var l_day = aaaa + "-" + mm + "-" + lastday;
+      var l_day = aaaa + "-" + mm + "-" + lastday<10?"0"+lastday:lastday;
     console.log(cur_day);
     console.log(f_day);
     console.log(l_day);

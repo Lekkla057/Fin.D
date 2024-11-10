@@ -73,7 +73,7 @@ const firebaseConfig = {
       var cur_day = aaaa + "-" + mm;
       var cur_day_add_1 = aaaa + "-" + (mm+1);
       var f_day = aaaa + "-" + mm + "-" + f_day_formate;
-      var l_day = aaaa + "-" + mm + "-" + lastday<10?"0"+lastday:lastday;
+      var l_day = aaaa + "-" + mm + "-" + (lastday<10?"0"+lastday:lastday);
     console.log(cur_day);
     console.log(f_day);
     console.log(l_day);

@@ -253,7 +253,7 @@ fs.writeFile("pdfs/test.html",pdHtml, function (err){
     );
   });})
 }
-exports.runSample=async(reply_token, text, userid)=> {
+runSample=async(reply_token, text, userid)=> {
   if (text == "ดูบัญชีรายรับ-รายจ่าย รายเดือน"||text == "ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์") {
     var data = await get(userid,text);
     console.log(data);

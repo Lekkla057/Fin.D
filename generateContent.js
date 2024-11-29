@@ -2,7 +2,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const apiKey = process.env.API_KEY;
 const config = new GoogleGenerativeAI(
-  "AIzaSyBs2HhR49MDULjy1_LScxv11IBAYkocDsk"
+  "AIzaSyBSWTbbbhq9H5vczatrT1CMgGFo8hVTCyE"//"AIzaSyBs2HhR49MDULjy1_LScxv11IBAYkocDsk"
 );
 const modelId = "gemini-pro";
 const model = config.getGenerativeModel({ model: modelId });
@@ -253,7 +253,7 @@ fs.writeFile("pdfs/test.html",pdHtml, function (err){
     );
   });})
 }
-async function runSample(reply_token, text, userid) {
+exports.runSample=async(reply_token, text, userid)=> {
   if (text == "ดูบัญชีรายรับ-รายจ่าย รายเดือน"||text == "ดูบัญชีรายรับ-รายจ่าย รายสัปดาห์") {
     var data = await get(userid,text);
     console.log(data);
